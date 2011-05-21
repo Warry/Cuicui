@@ -1,0 +1,997 @@
+
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr"> 
+ <head> 
+  <title>Flux public - cuicui</title> 
+
+  <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/> 
+  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+  <link rel="apple-touch-startup-image" href="splash.png" /> 
+  <link rel="apple-touch-icon-precomposed" href="icon.png"/> 
+  <link rel="stylesheet" type="text/css" href="iphone.css" media=""/> 
+
+
+  <link rel="shortcut icon" href="https://cuicui.zenexity.com/favicon.ico"/> 
+  <link rel="search" type="application/opensearchdescription+xml" href="https://cuicui.zenexity.com/index.php/opensearch/people" title="cuicui People Search"/> 
+  <link rel="search" type="application/opensearchdescription+xml" href="https://cuicui.zenexity.com/index.php/opensearch/notice" title="cuicui Notice Search"/> 
+  <link rel="alternate" href="https://cuicui.zenexity.com/index.php/rss" type="application/rdf+xml" title="Fil du flux public (RSS 1.0)"/> 
+  <link rel="alternate" href="https://cuicui.zenexity.com/index.php/api/statuses/public_timeline.rss" type="application/rss+xml" title="Fil du flux public (RSS 2.0)"/> 
+  <link rel="alternate" href="https://cuicui.zenexity.com/index.php/api/statuses/public_timeline.atom" type="application/atom+xml" title="Fil du flux public (Atom)"/> 
+  <meta http-equiv="X-XRDS-Location" content="https://cuicui.zenexity.com/index.php/main/xrds"/> 
+  <link rel="EditURI" type="application/rsd+xml" href="https://cuicui.zenexity.com/index.php/rsd.xml"/> 
+ </head> 
+ <body id="public" class="user_in"> 
+  <div id="wrap"> 
+   <div id="header"> 
+    <address id="site_contact" class="vcard"> 
+     <a class="url home bookmark" href="https://cuicui.zenexity.com/index.php/"> 
+      <img class="logo photo" src="https://cuicui.zenexity.com/theme/cloudy/logo.png" alt="cuicui"/> 
+       <span class="fn org">cuicui</span> 
+     </a> 
+    </address> 
+    <dl id="site_nav_global_primary"> 
+     <dt>Navigation primaire du site</dt> 
+     <dd> 
+      <ul class="nav"> 
+       <li id="nav_home"> 
+        <a href="https://cuicui.zenexity.com/index.php/mda/all" title="Profil personnel et flux des amis">Personnel</a> 
+       </li> 
+       <li id="nav_account"> 
+        <a href="https://cuicui.zenexity.com/index.php/settings/profile" title="Modifier votre adresse &#xE9;lectronique, avatar, mot de passe, profil">Compte</a> 
+       </li> 
+       <li id="nav_connect"> 
+        <a href="https://cuicui.zenexity.com/index.php/settings/oauthconnections" title="Se connecter aux services">Connexion</a> 
+       </li> 
+       <li id="nav_invitecontact"> 
+        <a href="https://cuicui.zenexity.com/index.php/main/invite" title="Inviter des amis et coll&#xE8;gues &#xE0; vous rejoindre sur cuicui">Inviter</a> 
+       </li> 
+       <li id="nav_logout"> 
+        <a href="https://cuicui.zenexity.com/index.php/main/logout" title="Fermer la session">Déconnexion</a> 
+       </li> 
+       <li id="nav_help"> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/help" title="&#xC0; l&#x2019;aide !">Aide</a> 
+       </li> 
+       <li id="nav_search"> 
+        <a href="https://cuicui.zenexity.com/index.php/search/people" title="Rechercher des personnes ou du texte">Rechercher</a> 
+       </li> 
+      </ul> 
+     </dd> 
+    </dl> 
+    <form id="form_notice" class="form_notice" method="post" action="https://cuicui.zenexity.com/index.php/notice/new" enctype="multipart/form-data"> 
+     <fieldset> 
+      <legend>Envoyer un avis</legend> 
+      <input name="token" type="hidden" id="token" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+      <label for="notice_data-text" id="notice_data-text-label">Quoi de neuf, mda ?</label> 
+      <textarea id="notice_data-text" cols="35" rows="4" name="status_textarea"></textarea> 
+      <dl class="form_note"> 
+       <dt>Caractères restants</dt> 
+       <dd id="notice_text-count">140</dd> 
+      </dl> 
+      <input name="MAX_FILE_SIZE" type="hidden" id="MAX_FILE_SIZE" value="5000000"/> 
+      <label for="notice_data-attach">Attacher</label> 
+      <input id="notice_data-attach" type="file" name="attach" title="Joindre un fichier"/> 
+      <input name="inreplyto" type="hidden" id="notice_in-reply-to" value=""/> 
+      <input id="notice_action-submit" class="submit" name="status_submit" type="submit" value="Envoyer"/> 
+     </fieldset> 
+    </form> 
+   </div> 
+   <div id="core"> 
+    <dl id="site_nav_local_views"> 
+     <dt>Vues locales</dt> 
+     <dd> 
+      <ul class="nav"> 
+       <li class="current" id="nav_timeline_public"> 
+        <a href="https://cuicui.zenexity.com/index.php/" title="Flux public">Public</a> 
+       </li> 
+       <li id="nav_groups"> 
+        <a href="https://cuicui.zenexity.com/index.php/group" title="Groupes d&#x2019;utilisateurs">Groupes</a> 
+       </li> 
+       <li id="nav_recent-tags"> 
+        <a href="https://cuicui.zenexity.com/index.php/tags" title="Marques r&#xE9;centes">Marques récentes</a> 
+       </li> 
+       <li id="nav_timeline_favorited"> 
+        <a href="https://cuicui.zenexity.com/index.php/favorited" title="Avis populaires">Populaires</a> 
+       </li> 
+      </ul> 
+     </dd> 
+    </dl> 
+    <div id="content"> 
+     <h1>Flux public</h1> 
+     <div id="content_inner"> 
+      <div id="notices_primary"> 
+       <h2>Avis</h2> 
+       <ol class="notices xoxo"> 
+        <li class="hentry notice" id="notice-35"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/ppa" class="url" title="Paul Panserrieu (ppa)"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="Paul Panserrieu"/> 
+ <span class="nickname fn">ppa</span></a> 
+          </span> 
+          <p class="entry-content">Encore... <a href="http://misc.42loops.com/wum1" title="http://misc.42loops.com/wum1" rel="nofollow external">http://misc.42loops.com/wum1</a></p> 
+         </div> 
+         <div class="entry-content thumbnails"></div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/35"> 
+           <abbr class="published" title="2011-05-20T22:29:00+02:00">il y a environ 12 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3034610" rel="external"><abbr class="geo" title="48.8835000;2.3219000">Paris 17 Batignolles-Monceau, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-35" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-35" type="hidden" id="token-35" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n35" value="35"/> 
+            <input type="submit" id="favor-submit-35" name="favor-submit-35" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=ppa&amp;inreplyto=35" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">35</span> 
+          </a> 
+           <form id="repeat-35" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-35" type="hidden" id="token-35" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n35" value="35"/> 
+            <input type="submit" id="repeat-submit-35" name="repeat-submit-35" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-34"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/ppa" class="url" title="Paul Panserrieu (ppa)"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="Paul Panserrieu"/> 
+ <span class="nickname fn">ppa</span></a> 
+          </span> 
+          <p class="entry-content">Suite... <a href="http://misc.42loops.com/O3RT" title="http://misc.42loops.com/O3RT" rel="nofollow external">http://misc.42loops.com/O3RT</a></p> 
+         </div> 
+         <div class="entry-content thumbnails"></div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/34"> 
+           <abbr class="published" title="2011-05-20T22:19:55+02:00">il y a environ 12 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3034610" rel="external"><abbr class="geo" title="48.8835000;2.3219000">Paris 17 Batignolles-Monceau, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-34" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-34" type="hidden" id="token-34" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n34" value="34"/> 
+            <input type="submit" id="favor-submit-34" name="favor-submit-34" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=ppa&amp;inreplyto=34" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">34</span> 
+          </a> 
+           <form id="repeat-34" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-34" type="hidden" id="token-34" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n34" value="34"/> 
+            <input type="submit" id="repeat-submit-34" name="repeat-submit-34" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-33"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/ppa" class="url" title="Paul Panserrieu (ppa)"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="Paul Panserrieu"/> 
+ <span class="nickname fn">ppa</span></a> 
+          </span> 
+          <p class="entry-content">Current status: <a href="http://misc.42loops.com/HcgH" title="http://misc.42loops.com/HcgH" rel="nofollow external">http://misc.42loops.com/HcgH</a></p> 
+         </div> 
+         <div class="entry-content thumbnails"></div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/33"> 
+           <abbr class="published" title="2011-05-20T22:17:58+02:00">il y a environ 12 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3034610" rel="external"><abbr class="geo" title="48.8835000;2.3219000">Paris 17 Batignolles-Monceau, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-33" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-33" type="hidden" id="token-33" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n33" value="33"/> 
+            <input type="submit" id="favor-submit-33" name="favor-submit-33" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=ppa&amp;inreplyto=33" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">33</span> 
+          </a> 
+           <form id="repeat-33" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-33" type="hidden" id="token-33" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n33" value="33"/> 
+            <input type="submit" id="repeat-submit-33" name="repeat-submit-33" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-32"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://a25.zenexity.com/statusnet/index.php/scr" class="url" title="S&#xE9;bastien Creme (scr)"> 
+            <img src="http://cuicui.zenexity.com/avatar/3-48-20110520174539.png" class="avatar photo" width="48" height="48" alt="S&#xE9;bastien Creme"/> 
+ <span class="nickname fn">scr</span></a> 
+          </span> 
+          <p class="entry-content">En fait y a pas d'api sur notre installation.</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/32"> 
+           <abbr class="published" title="2011-05-20T20:21:06+02:00">il y a environ 14 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/2989487" rel="external"><abbr class="geo" title="48.8718000;2.3399000">Paris 09 Opéra, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-32" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-32" type="hidden" id="token-32" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n32" value="32"/> 
+            <input type="submit" id="favor-submit-32" name="favor-submit-32" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=scr&amp;inreplyto=32" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">32</span> 
+          </a> 
+           <form id="repeat-32" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-32" type="hidden" id="token-32" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n32" value="32"/> 
+            <input type="submit" id="repeat-submit-32" name="repeat-submit-32" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-31"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="https://cuicui.zenexity.com/index.php/mda" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="mda"/> 
+ <span class="nickname fn">mda</span></a> 
+          </span> 
+          <p class="entry-content">@<span class="vcard"><a href="https://cuicui.zenexity.com/index.php/user/3" class="url" title="S&#xE9;bastien Creme"><span class="fn nickname">scr</span></a></span> non, meme pour iPhone ca marche pas :/</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/31"> 
+           <abbr class="published" title="2011-05-20T20:09:22+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3034610" rel="external"><abbr class="geo" title="48.8835000;2.3219000">Paris 17 Batignolles-Monceau, Île-de-France, France</abbr></a></span> 
+           <a href="https://cuicui.zenexity.com/index.php/conversation/28#notice-31" class="response">dans le contexte</a> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-31" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-31" type="hidden" id="token-31" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n31" value="31"/> 
+            <input type="submit" id="favor-submit-31" name="favor-submit-31" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=mda&amp;inreplyto=31" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">31</span> 
+          </a> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/delete/31" class="notice_delete" title="Supprimer cet avis">Supprimer</a> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-30"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://a25.zenexity.com/statusnet/index.php/scr" class="url" title="S&#xE9;bastien Creme (scr)"> 
+            <img src="http://cuicui.zenexity.com/avatar/3-48-20110520174539.png" class="avatar photo" width="48" height="48" alt="S&#xE9;bastien Creme"/> 
+ <span class="nickname fn">scr</span></a> 
+          </span> 
+          <p class="entry-content">y a des clients mac pour #<span class="tag"><a href="https://cuicui.zenexity.com/index.php/tag/cuicui" rel="tag">cuicui</a></span> ?</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/30"> 
+           <abbr class="published" title="2011-05-20T20:00:58+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/2986082" rel="external"><abbr class="geo" title="48.8601075;2.3780983">Paris 11 Popincourt, Île-de-France, France</abbr></a></span> 
+           <a href="https://cuicui.zenexity.com/index.php/conversation/28#notice-30" class="response">dans le contexte</a> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-30" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-30" type="hidden" id="token-30" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n30" value="30"/> 
+            <input type="submit" id="favor-submit-30" name="favor-submit-30" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=scr&amp;inreplyto=30" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">30</span> 
+          </a> 
+           <form id="repeat-30" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-30" type="hidden" id="token-30" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n30" value="30"/> 
+            <input type="submit" id="repeat-submit-30" name="repeat-submit-30" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-29"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://a25.zenexity.com/statusnet/index.php/scr" class="url" title="S&#xE9;bastien Creme (scr)"> 
+            <img src="http://cuicui.zenexity.com/avatar/3-48-20110520174539.png" class="avatar photo" width="48" height="48" alt="S&#xE9;bastien Creme"/> 
+ <span class="nickname fn">scr</span></a> 
+          </span> 
+          <p class="entry-content">les avatars marchent maintenant</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/29"> 
+           <abbr class="published" title="2011-05-20T19:59:29+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/2986082" rel="external"><abbr class="geo" title="48.8601075;2.3780983">Paris 11 Popincourt, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-29" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-29" type="hidden" id="token-29" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n29" value="29"/> 
+            <input type="submit" id="favor-submit-29" name="favor-submit-29" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=scr&amp;inreplyto=29" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">29</span> 
+          </a> 
+           <form id="repeat-29" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-29" type="hidden" id="token-29" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n29" value="29"/> 
+            <input type="submit" id="repeat-submit-29" name="repeat-submit-29" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-28"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="https://cuicui.zenexity.com/index.php/mda" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="mda"/> 
+ <span class="nickname fn">mda</span></a> 
+          </span> 
+          <p class="entry-content">ce soir on va se prendre une cuicuite</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="https://cuicui.zenexity.com/index.php/notice/28"> 
+           <abbr class="published" title="2011-05-20T19:55:30+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3034610" rel="external"><abbr class="geo" title="48.8835000;2.3219000">Paris 17 Batignolles-Monceau, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-28" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-28" type="hidden" id="token-28" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n28" value="28"/> 
+            <input type="submit" id="favor-submit-28" name="favor-submit-28" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=mda&amp;inreplyto=28" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">28</span> 
+          </a> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/delete/28" class="notice_delete" title="Supprimer cet avis">Supprimer</a> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-26"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://a25.zenexity.com/statusnet/index.php/scr" class="url" title="S&#xE9;bastien Creme (scr)"> 
+            <img src="http://cuicui.zenexity.com/avatar/3-48-20110520174539.png" class="avatar photo" width="48" height="48" alt="S&#xE9;bastien Creme"/> 
+ <span class="nickname fn">scr</span></a> 
+          </span> 
+          <p class="entry-content">le lion !</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/26"> 
+           <abbr class="published" title="2011-05-20T19:45:51+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/2986082" rel="external"><abbr class="geo" title="48.8601075;2.3780983">Paris 11 Popincourt, Île-de-France, France</abbr></a></span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-26" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-26" type="hidden" id="token-26" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n26" value="26"/> 
+            <input type="submit" id="favor-submit-26" name="favor-submit-26" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=scr&amp;inreplyto=26" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">26</span> 
+          </a> 
+           <form id="repeat-26" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-26" type="hidden" id="token-26" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n26" value="26"/> 
+            <input type="submit" id="repeat-submit-26" name="repeat-submit-26" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-25"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/jfp" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="jfp"/> 
+ <span class="nickname fn">jfp</span></a> 
+          </span> 
+          <p class="entry-content">Une bonne bouse en PHP ce truc.</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/25"> 
+           <abbr class="published" title="2011-05-20T19:39:28+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-25" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-25" type="hidden" id="token-25" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n25" value="25"/> 
+            <input type="submit" id="favor-submit-25" name="favor-submit-25" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=jfp&amp;inreplyto=25" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">25</span> 
+          </a> 
+           <form id="repeat-25" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-25" type="hidden" id="token-25" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n25" value="25"/> 
+            <input type="submit" id="repeat-submit-25" name="repeat-submit-25" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-24"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/nna" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="nna"/> 
+ <span class="nickname fn">nna</span></a> 
+          </span> 
+          <p class="entry-content">Super, maintenant on a notre propre twitter, let's start a revolution ! :D</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/24"> 
+           <abbr class="published" title="2011-05-20T19:26:48+02:00">il y a environ 15 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-24" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-24" type="hidden" id="token-24" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n24" value="24"/> 
+            <input type="submit" id="favor-submit-24" name="favor-submit-24" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=nna&amp;inreplyto=24" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">24</span> 
+          </a> 
+           <form id="repeat-24" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-24" type="hidden" id="token-24" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n24" value="24"/> 
+            <input type="submit" id="repeat-submit-24" name="repeat-submit-24" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-23"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/sdr" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="sdr"/> 
+ <span class="nickname fn">sdr</span></a> 
+          </span> 
+          <p class="entry-content">personne tweet la...</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/23"> 
+           <abbr class="published" title="2011-05-20T19:06:23+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-23" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-23" type="hidden" id="token-23" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n23" value="23"/> 
+            <input type="submit" id="favor-submit-23" name="favor-submit-23" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=sdr&amp;inreplyto=23" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">23</span> 
+          </a> 
+           <form id="repeat-23" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-23" type="hidden" id="token-23" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n23" value="23"/> 
+            <input type="submit" id="repeat-submit-23" name="repeat-submit-23" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-22"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/gbo" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="gbo"/> 
+ <span class="nickname fn">gbo</span></a> 
+          </span> 
+          <p class="entry-content">; DELETE FROM USERS</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/10"> 
+           <abbr class="published" title="2011-05-20T18:22:31+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3013131" rel="external"><abbr class="geo" title="48.8601000;2.3507000">Paris 04 Hôtel-de-Ville, Île-de-France, France</abbr></a></span> 
+          <span class="repeat vcard">Repris par           <a href="http://cuicui.zenexity.com/index.php/sdr" class="url"> 
+            <span class="fn nickname">sdr</span> 
+           </a> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-10" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-10" type="hidden" id="token-10" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n10" value="10"/> 
+            <input type="submit" id="favor-submit-10" name="favor-submit-10" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=gbo&amp;inreplyto=10" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">10</span> 
+          </a> 
+           <form id="repeat-10" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-10" type="hidden" id="token-10" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n10" value="10"/> 
+            <input type="submit" id="repeat-submit-10" name="repeat-submit-10" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-21"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/jsb" class="url" title="Jean-S&#xE9;bastien Bour (jsb)"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="Jean-S&#xE9;bastien Bour"/> 
+ <span class="nickname fn">jsb</span></a> 
+          </span> 
+          <p class="entry-content">@<span class="vcard"><a href="http://cuicui.zenexity.com/index.php/user/3" class="url" title="S&#xE9;bastien Creme"><span class="fn nickname">scr</span></a></span> <a href="http://en.wikipedia.org/wiki/Invisible_Pink_Unicorn" title="http://en.wikipedia.org/wiki/Invisible_Pink_Unicorn" rel="nofollow external">http://en.wikipedia.org/wiki/Invisible_Pink_Unicorn</a> FTW!</p> 
+         </div> 
+         <div class="entry-content thumbnails"></div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/21"> 
+           <abbr class="published" title="2011-05-20T18:58:01+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <a href="http://cuicui.zenexity.com/index.php/conversation/17#notice-21" class="response">dans le contexte</a> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-21" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-21" type="hidden" id="token-21" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n21" value="21"/> 
+            <input type="submit" id="favor-submit-21" name="favor-submit-21" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=jsb&amp;inreplyto=21" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">21</span> 
+          </a> 
+           <form id="repeat-21" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-21" type="hidden" id="token-21" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n21" value="21"/> 
+            <input type="submit" id="repeat-submit-21" name="repeat-submit-21" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-20"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/gbo" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="gbo"/> 
+ <span class="nickname fn">gbo</span></a> 
+          </span> 
+          <p class="entry-content">; DELETE FROM USERS</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/10"> 
+           <abbr class="published" title="2011-05-20T18:22:31+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/3013131" rel="external"><abbr class="geo" title="48.8601000;2.3507000">Paris 04 Hôtel-de-Ville, Île-de-France, France</abbr></a></span> 
+          <span class="repeat vcard">Repris par           <a href="http://cuicui.zenexity.com/index.php/jfp" class="url"> 
+            <span class="fn nickname">jfp</span> 
+           </a> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-10" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-10" type="hidden" id="token-10" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n10" value="10"/> 
+            <input type="submit" id="favor-submit-10" name="favor-submit-10" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=gbo&amp;inreplyto=10" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">10</span> 
+          </a> 
+           <form id="repeat-10" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-10" type="hidden" id="token-10" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n10" value="10"/> 
+            <input type="submit" id="repeat-submit-10" name="repeat-submit-10" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-19"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/ppa" class="url" title="Paul Panserrieu (ppa)"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="Paul Panserrieu"/> 
+ <span class="nickname fn">ppa</span></a> 
+          </span> 
+          <p class="entry-content">j'aime pas les licornes...</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://a25.zenexity.com/statusnet/index.php/notice/19"> 
+           <abbr class="published" title="2011-05-20T18:31:08+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-19" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-19" type="hidden" id="token-19" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n19" value="19"/> 
+            <input type="submit" id="favor-submit-19" name="favor-submit-19" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=ppa&amp;inreplyto=19" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">19</span> 
+          </a> 
+           <form id="repeat-19" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-19" type="hidden" id="token-19" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n19" value="19"/> 
+            <input type="submit" id="repeat-submit-19" name="repeat-submit-19" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-18"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://a25.zenexity.com/statusnet/index.php/scr" class="url" title="S&#xE9;bastien Creme (scr)"> 
+            <img src="http://cuicui.zenexity.com/avatar/3-48-20110520174539.png" class="avatar photo" width="48" height="48" alt="S&#xE9;bastien Creme"/> 
+ <span class="nickname fn">scr</span></a> 
+          </span> 
+          <p class="entry-content">J'aime tro les licorn LOL xD</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/18"> 
+           <abbr class="published" title="2011-05-20T18:30:26+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <span class="location">chez <a href="http://www.geonames.org/2989487" rel="external"><abbr class="geo" title="48.8718000;2.3399000">Paris 09 Opéra, Île-de-France, France</abbr></a></span> 
+           <a href="http://cuicui.zenexity.com/index.php/conversation/17#notice-18" class="response">dans le contexte</a> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-18" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-18" type="hidden" id="token-18" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n18" value="18"/> 
+            <input type="submit" id="favor-submit-18" name="favor-submit-18" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=scr&amp;inreplyto=18" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">18</span> 
+          </a> 
+           <form id="repeat-18" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-18" type="hidden" id="token-18" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n18" value="18"/> 
+            <input type="submit" id="repeat-submit-18" name="repeat-submit-18" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-17"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/jsb" class="url" title="Jean-S&#xE9;bastien Bour (jsb)"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="Jean-S&#xE9;bastien Bour"/> 
+ <span class="nickname fn">jsb</span></a> 
+          </span> 
+          <p class="entry-content">@<span class="vcard"><a href="http://cuicui.zenexity.com/index.php/user/12" class="url"><span class="fn nickname">sdr</span></a></span> oh non pas les parsers combinators encore !</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/17"> 
+           <abbr class="published" title="2011-05-20T18:29:30+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <a href="http://cuicui.zenexity.com/index.php/conversation/16#notice-17" class="response">dans le contexte</a> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-17" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-17" type="hidden" id="token-17" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n17" value="17"/> 
+            <input type="submit" id="favor-submit-17" name="favor-submit-17" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=jsb&amp;inreplyto=17" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">17</span> 
+          </a> 
+           <form id="repeat-17" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-17" type="hidden" id="token-17" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n17" value="17"/> 
+            <input type="submit" id="repeat-submit-17" name="repeat-submit-17" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-16"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/sdr" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="sdr"/> 
+ <span class="nickname fn">sdr</span></a> 
+          </span> 
+          <p class="entry-content">^^</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/16"> 
+           <abbr class="published" title="2011-05-20T18:28:27+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+           <a href="http://cuicui.zenexity.com/index.php/conversation/16#notice-16" class="response">dans le contexte</a> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-16" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-16" type="hidden" id="token-16" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n16" value="16"/> 
+            <input type="submit" id="favor-submit-16" name="favor-submit-16" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=sdr&amp;inreplyto=16" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">16</span> 
+          </a> 
+           <form id="repeat-16" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-16" type="hidden" id="token-16" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n16" value="16"/> 
+            <input type="submit" id="repeat-submit-16" name="repeat-submit-16" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+        <li class="hentry notice" id="notice-15"> 
+         <div class="entry-title"> 
+          <span class="vcard author"> 
+           <a href="http://cuicui.zenexity.com/index.php/rdj" class="url"> 
+            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" class="avatar photo" width="48" height="48" alt="rdj"/> 
+ <span class="nickname fn">rdj</span></a> 
+          </span> 
+          <p class="entry-content">l'ours vosgien est sortie de sa grotte !!</p> 
+         </div> 
+         <div class="entry-content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/14"> 
+           <abbr class="published" title="2011-05-20T18:24:09+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+           <span class="source">de            <span class="device">web</span> 
+          </span> 
+          <span class="repeat vcard">Repris par           <a href="http://cuicui.zenexity.com/index.php/jsb" class="url" title="Jean-S&#xE9;bastien Bour (jsb)"> 
+            <span class="fn nickname">jsb</span> 
+           </a> 
+          </span> 
+         </div> 
+         <div class="notice-options"> 
+          <form id="favor-14" class="form_favor" method="post" action="https://cuicui.zenexity.com/index.php/main/favor"> 
+           <fieldset> 
+            <legend>Ajouter aux favoris</legend> 
+            <input name="token-14" type="hidden" id="token-14" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n14" value="14"/> 
+            <input type="submit" id="favor-submit-14" name="favor-submit-14" class="submit" value="Favor" title="Ajouter aux favoris"/> 
+           </fieldset> 
+          </form> 
+           <a href="https://cuicui.zenexity.com/index.php/notice/new?replyto=rdj&amp;inreplyto=14" class="notice_reply" title="R&#xE9;pondre &#xE0; cet avis">Répondre            <span class="notice_id">14</span> 
+          </a> 
+           <form id="repeat-14" class="form_repeat" method="post" action="https://cuicui.zenexity.com/index.php/main/repeat"> 
+           <fieldset> 
+            <legend>Reprendre cet avis ?</legend> 
+            <input name="token-14" type="hidden" id="token-14" value="68ebc99687f0e9bd3dec14700b0572df9e11a4f2916e0a6ae89b8c6b5e0d0510eab6603bafd3e5cb5271e479afc57161b6a57e3b531ed4f0b21cf7ee4b4abbbc"/> 
+            <input name="notice" type="hidden" id="notice-n14" value="14"/> 
+            <input type="submit" id="repeat-submit-14" name="repeat-submit-14" class="submit" value="Oui" title="Reprendre cet avis"/> 
+           </fieldset> 
+          </form> 
+         </div> 
+        </li> 
+       </ol> 
+      </div> 
+      <dl class="pagination"> 
+       <dt>Pagination</dt> 
+       <dd> 
+        <ul class="nav"> 
+         <li class="nav_next"> 
+          <a href="https://cuicui.zenexity.com/index.php/?page=2" rel="next">Avant</a> 
+         </li> 
+        </ul> 
+       </dd> 
+      </dl> 
+     </div> 
+    </div> 
+    <div id="aside_primary" class="aside"> 
+     <div id="popular_notices" class="section"> 
+      <h2>Avis populaires</h2> 
+      <ol class="notices xoxo"> 
+       <li class="hentry notice"> 
+        <div class="entry-title"> 
+         <span class="vcard author"> 
+          <a title="gbo" href="http://cuicui.zenexity.com/index.php/gbo" class="url"> 
+           <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-mini.png" width="24" height="24" class="avatar photo" alt="gbo"/> 
+            <span class="fn nickname">gbo</span> 
+          </a> 
+         </span> 
+         <p class="entry-content">; DELETE FROM USERS</p> 
+         <div class="entry_content"> 
+          <a rel="bookmark" class="timestamp" href="http://cuicui.zenexity.com/index.php/notice/10"> 
+           <abbr class="published" title="2011-05-20T18:22:31+02:00">il y a environ 16 heures</abbr> 
+          </a> 
+         </div> 
+        </div> 
+       </li> 
+      </ol> 
+     </div> 
+     <div id="top_groups_by_member" class="section"> 
+      <h2>Groupes avec le plus de membres</h2> 
+      <table> 
+       <tr> 
+        <td> 
+         <span class="vcard"> 
+          <a title="Zenexity @ paris" href="http://cuicui.zenexity.com/index.php/group/zenparis" rel="contact group" class="url">            <img src="https://cuicui.zenexity.com/theme/cloudy/default-avatar-stream.png" width="24" height="24" class="avatar photo" alt="Zenexity @ paris"/> 
+            <span class="fn org nickname">zenparis</span> 
+          </a> 
+         </span> 
+        </td> 
+        <td class="value">1</td> 
+       </tr> 
+      </table> 
+     </div> 
+     <div id="featured_users" class="section"> 
+      <h2>Utilisateurs en vedette</h2> 
+     </div> 
+     <div id="export_data" class="section"> 
+      <h2>Flux d’informations</h2> 
+      <ul class="xoxo"> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/rss" class="rss" type="application/rdf+xml" title="Fil du flux public (RSS 1.0)">RSS 1.0</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/api/statuses/public_timeline.rss" class="rss" type="application/rss+xml" title="Fil du flux public (RSS 2.0)">RSS 2.0</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/api/statuses/public_timeline.atom" class="atom" type="application/atom+xml" title="Fil du flux public (Atom)">Atom</a> 
+       </li> 
+      </ul> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="footer"> 
+    <dl id="site_nav_global_secondary"> 
+     <dt>Navigation secondaire du site</dt> 
+     <dd> 
+      <ul class="nav"> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/help">Aide</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/about">À propos</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/faq">FAQ</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/tos">CGU</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/privacy">Confidentialité</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/source">Source</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/main/version">Version</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/contact">Contact</a> 
+       </li> 
+       <li> 
+        <a href="https://cuicui.zenexity.com/index.php/doc/badge">Insigne</a> 
+       </li> 
+      </ul> 
+     </dd> 
+    </dl> 
+    <dl id="licenses"> 
+     <dt id="site_statusnet_license">Licence du logiciel StatusNet</dt> 
+     <dd><p><strong>cuicui</strong> est un service de microblogging qui vous est proposé par <a href="zenexity.com">zenexity</a>. Il utilise le logiciel de micro-blogging <a href="http://status.net/">StatusNet</a>, version 0.9.7fix1, disponible sous la licence <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html">GNU Affero General Public License</a>.</p> 
+</dd> 
+     <dt id="site_content_license">Licence du contenu du site</dt> 
+     <dd id="site_content_license_cc"> 
+      <p> 
+       <img id="license_cc" src="https://i.creativecommons.org/l/by/3.0/80x15.png" alt="Creative Commons Attribution 3.0" width="80" height="15"/> 
+ Tous les contenus cuicui et les données sont disponibles sous la licence <a class="license" rel="external license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a>.</p> 
+     </dd> 
+    </dl> 
+   </div> 
+  </div> 
+  <script type="text/javascript" src="https://cuicui.zenexity.com/js/jquery.min.js?version=0.9.7fix1"> </script> 
+  <script type="text/javascript" src="https://cuicui.zenexity.com/js/jquery.form.min.js?version=0.9.7fix1"> </script> 
+  <script type="text/javascript" src="https://cuicui.zenexity.com/js/jquery.cookie.min.js?version=0.9.7fix1"> </script> 
+  <script type="text/javascript">/*<![CDATA[*/ if (typeof window.JSON !== "object") { $.getScript("https://cuicui.zenexity.com/js/json2.min.js"); } /*]]>*/</script> 
+  <script type="text/javascript" src="https://cuicui.zenexity.com/js/jquery.joverlay.min.js?version=0.9.7fix1"> </script> 
+  <script type="text/javascript" src="https://cuicui.zenexity.com/js/util.min.js?version=0.9.7fix1"> </script> 
+  <script type="text/javascript">/*<![CDATA[*/ SN.messages={"showmore_tooltip":"Voir davantage"} /*]]>*/</script> 
+  <script type="text/javascript">/*<![CDATA[*/ if (window.top !== window.self) { window.top.location.href = window.self.location.href; } /*]]>*/</script> 
+  <script type="text/javascript" src="https://cuicui.zenexity.com/plugins/OStatus/js/ostatus.js"> </script> 
+
+ </body> 
+<!-- 643ms --></html> 
+
